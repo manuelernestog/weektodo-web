@@ -320,6 +320,8 @@
                   <option value="tr">Türk</option>
                   <option value="vi">Tiếng Việt</option>
                   <option value="he">עִברִית</option>
+                  <option value="ca">Català</option>
+
                 </select>
               </div>
             </div>
