@@ -1,63 +1,97 @@
 <template>
   <div class="weekly-to-do-header d-flex">
-    <i v-show="!editing" class="bi-info header-menu-icons align-self-center dropdown-toggle-split "
-      style="visibility: hidden"></i>
+    <i
+      v-show="!editing"
+      class="bi-info header-menu-icons align-self-center dropdown-toggle-split"
+      style="visibility: hidden"
+    ></i>
     <div style="flex-grow: 1" class="noselect">
       <div v-if="!customTodoList">
         <h4 :class="{ 'today-date': is_today }">
           {{ moments(id).locale(language).format("dddd") }}
+          ({{ toDoList.length }})
         </h4>
         <span class="weekly-to-do-subheader">
           {{ moments(id).locale(language).format("LL") }}
         </span>
       </div>
       <div v-else>
-        <h4 v-show="!editing" @dblclick="editToDoListName"> {{ todo_list_name }} </h4>
-        <input class="custom-todo-input" v-show="editing" type="text" v-model="name" ref="cTodoInput" @blur="doneEdit()"
-          @keyup.enter="doneEdit()" @keyup.esc="cancelEdit()" />
+        <h4 v-show="!editing" @dblclick="editToDoListName">
+          {{ todo_list_name }}
+          ({{ toDoList.length }})
+        </h4>
+        <input
+          class="custom-todo-input"
+          v-show="editing"
+          type="text"
+          v-model="name"
+          ref="cTodoInput"
+          @blur="doneEdit()"
+          @keyup.enter="doneEdit()"
+          @keyup.esc="cancelEdit()"
+        />
       </div>
     </div>
-    <i v-show="!editing" class="bi-three-dots-vertical header-menu-icons dropdown-toggle-split align-self-center"
-      type="button" data-bs-toggle="dropdown"></i>
+    <i
+      v-show="!editing"
+      class="bi-three-dots-vertical header-menu-icons dropdown-toggle-split align-self-center"
+      type="button"
+      data-bs-toggle="dropdown"
+    ></i>
     <ul class="dropdown-menu" aria-labelledby="btnTaskOptionMenu">
       <li>
         <button class="dropdown-item" type="button" @click="newTask">
-          <i class="bi-plus-lg"></i> <span>{{ $t('ui.newTask') }}</span>
+          <i class="bi-plus-lg"></i> <span>{{ $t("ui.newTask") }}</span>
         </button>
       </li>
       <li v-show="!allTodoChecked()">
         <button class="dropdown-item" type="button" @click="check_all_items">
-          <i class="bi-check2-all"></i> <span>{{ $t('ui.completeAll') }}</span>
+          <i class="bi-check2-all"></i> <span>{{ $t("ui.completeAll") }}</span>
         </button>
       </li>
       <li>
         <button class="dropdown-item" type="button" @click="sortItems">
-          <i class="bi-sort-down"></i> <span>{{ $t('ui.reorder') }}</span>
+          <i class="bi-sort-down"></i> <span>{{ $t("ui.reorder") }}</span>
         </button>
       </li>
       <li v-show="!customTodoList && !allTodoChecked()">
         <button class="dropdown-item" type="button" @click="moveUndoneItems">
-          <i class="bi-reply-all"></i> <span>{{ $t('ui.postpone') }}</span>
+          <i class="bi-reply-all"></i> <span>{{ $t("ui.postpone") }}</span>
         </button>
       </li>
       <li>
-        <button class="dropdown-item" type="button" @click="copyListTasksToClipboard">
-          <i class="bi-clipboard"></i> <span>{{ $t('ui.copyTasks') }}</span>
+        <button
+          class="dropdown-item"
+          type="button"
+          @click="copyListTasksToClipboard"
+        >
+          <i class="bi-clipboard"></i> <span>{{ $t("ui.copyTasks") }}</span>
         </button>
       </li>
       <li>
         <hr class="dropdown-divider" />
       </li>
       <li>
-        <button class="dropdown-item" type="button" @click="clearList" data-bs-toggle="modal"
-          data-bs-target="#clearListModal">
-          <i class="bi-trash"></i> <span>{{ $t('ui.clearList') }}</span>
+        <button
+          class="dropdown-item"
+          type="button"
+          @click="clearList"
+          data-bs-toggle="modal"
+          data-bs-target="#clearListModal"
+        >
+          <i class="bi-trash"></i> <span>{{ $t("ui.clearList") }}</span>
         </button>
       </li>
       <li v-show="customTodoList">
-        <button class="dropdown-item" type="button" data-bs-dismiss="modal" @click="removeList" data-bs-toggle="modal"
-          data-bs-target="#customListRemoveModal">
-          <i class="bi-x-circle"></i> <span>{{ $t('ui.removeList') }}</span>
+        <button
+          class="dropdown-item"
+          type="button"
+          data-bs-dismiss="modal"
+          @click="removeList"
+          data-bs-toggle="modal"
+          data-bs-target="#customListRemoveModal"
+        >
+          <i class="bi-x-circle"></i> <span>{{ $t("ui.removeList") }}</span>
         </button>
       </li>
     </ul>
@@ -70,7 +104,7 @@ import toDoListRepository from "../repositories/toDoListRepository";
 import customToDoListIdsRepository from "../repositories/customToDoListIdsRepository";
 import notifications from "../helpers/notifications";
 import tasksHelper from "../helpers/tasksHelper";
-import { Toast } from 'bootstrap';
+import { Toast } from "bootstrap";
 
 export default {
   components: {},
@@ -112,11 +146,18 @@ export default {
       this.updateTodoList(this.id, this.$store.getters.todoLists[this.id]);
 
       if (this.$store.getters.config.autoReorderTasks) {
-        this.updateTodoList(towmorrow_id, tasksHelper.reorderTasksList(this.$store.getters.todoLists[towmorrow_id]));
+        this.updateTodoList(
+          towmorrow_id,
+          tasksHelper.reorderTasksList(
+            this.$store.getters.todoLists[towmorrow_id]
+          )
+        );
       } else {
-        this.updateTodoList(towmorrow_id, this.$store.getters.todoLists[towmorrow_id]);
+        this.updateTodoList(
+          towmorrow_id,
+          this.$store.getters.todoLists[towmorrow_id]
+        );
       }
-
     },
     moments: function (date) {
       return moment(date);
@@ -136,7 +177,8 @@ export default {
       return allChecked;
     },
     editToDoListName: function () {
-      this.name = this.$store.getters.cTodoListIds[this.cTodoListIndex].listName;
+      this.name =
+        this.$store.getters.cTodoListIds[this.cTodoListIndex].listName;
       this.editing = true;
       this.$nextTick(function () {
         this.$refs.cTodoInput.focus();
@@ -146,12 +188,14 @@ export default {
     doneEdit: function () {
       this.editing = false;
       this.$store.commit("updateCustomTodoList", {
-        index: this.cTodoListIndex, name: this.name,
+        index: this.cTodoListIndex,
+        name: this.name,
       });
       customToDoListIdsRepository.update(this.$store.getters.cTodoListIds);
     },
     cancelEdit: function () {
-      this.name = this.$store.getters.cTodoListIds[this.cTodoListIndex].listName || "";
+      this.name =
+        this.$store.getters.cTodoListIds[this.cTodoListIndex].listName || "";
       this.editing = false;
     },
     removeList: function () {
@@ -162,7 +206,10 @@ export default {
       });
     },
     sortItems: function () {
-      toDoListRepository.update(this.id, tasksHelper.reorderTasksList(this.toDoList));
+      toDoListRepository.update(
+        this.id,
+        tasksHelper.reorderTasksList(this.toDoList)
+      );
     },
     clearList: function () {
       this.$store.commit("setListToClear", this.id);
@@ -173,11 +220,13 @@ export default {
       toast.show();
     },
     todoListToString: function () {
-      return this.toDoList.map((x) => {
-        let task = `- ${x.text}`;
-        if (x.time) task += ` [${x.time}]`;
-        return task;
-      }).join('\n')
+      return this.toDoList
+        .map((x) => {
+          let task = `- ${x.text}`;
+          if (x.time) task += ` [${x.time}]`;
+          return task;
+        })
+        .join("\n");
     },
     newTask: function () {
       this.$nextTick(function () {
@@ -186,7 +235,7 @@ export default {
           .getElementsByClassName("new-todo-input")[0]
           .focus();
       });
-    }
+    },
   },
   computed: {
     is_today: function () {
@@ -281,16 +330,16 @@ export default {
   font-size: 0.865rem;
   min-width: unset;
   border-radius: 8px;
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .20);
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
   border: none;
   color: #3c3c3c;
 
   .dropdown-item {
-    padding: .4rem 1.9rem .4rem .65rem;
+    padding: 0.4rem 1.9rem 0.4rem 0.65rem;
   }
 
   .dropdown-divider {
-    margin: .3rem;
+    margin: 0.3rem;
   }
 
   i {
