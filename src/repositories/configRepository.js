@@ -25,7 +25,9 @@ export default {
         openOnStartup: true,
         runInBackground: true,
         moveOldTasks: true,
-        dateToShowInitialDonateModal: moment().add(15, "d").format("YYYY-MM-DD"),
+        dateToShowInitialDonateModal: moment()
+          .add(15, "d")
+          .format("YYYY-MM-DD"),
         InitialDonateModalShown: false,
         mainDividerPosition: 1,
         darkTrayIcon: false,
@@ -36,9 +38,10 @@ export default {
         autoReorderTasks: false,
         moveCompletedTaskToBottom: true,
         moveCompletedSubTaskToBottom: true,
+        autoCompleteTaskWhenAllSubtasksAreDone: true,
         fullscreenToDoModal: false,
         weekStartOnMonday: true,
-        lastDayOpened: moment().format("YYYY-MM-DD")
+        lastDayOpened: moment().format("YYYY-MM-DD"),
       };
       storageRepository.set("config", default_config);
       return default_config;
