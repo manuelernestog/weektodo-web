@@ -43,6 +43,7 @@
     "clear": "삭제",
     "fullscreenToDoModal": "전체 화면으로 할 일 세부 정보",
     "moveCompletedSubTaskToBottom": "완료된 하위 작업을 맨 아래로 이동",
+    "autoCompleteTaskWhenAllSubtasksAreDone": "자동으로 작업 완료",
     "weekStartOnMonday": "주 시작 월요일"
   },
   "donate": {

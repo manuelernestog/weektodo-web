@@ -43,6 +43,7 @@
     "clear": "消去",
     "fullscreenToDoModal": "全画面でのToDo詳細",
     "moveCompletedSubTaskToBottom": "完了したサブタスクを一番下に移動します",
+    "autoCompleteTaskWhenAllSubtasksAreDone": "タスクを自動的に完了する",
     "weekStartOnMonday": "週は月曜日から始まります"
   },
   "donate": {

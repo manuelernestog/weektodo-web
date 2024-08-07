@@ -43,6 +43,7 @@
     "clear": "Löschen",
     "fullscreenToDoModal": "Aufgabendetails im Vollbildmodus",
     "moveCompletedSubTaskToBottom": "Abgeschlossene Unteraufgaben nach unten verschieben",
+    "autoCompleteTaskWhenAllSubtasksAreDone": "Aufgaben automatisch erledigen",
     "weekStartOnMonday": "Die Woche beginnt am Montag"
   },
   "donate": {

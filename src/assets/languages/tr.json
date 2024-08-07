@@ -43,6 +43,7 @@
     "clear": "Temizle",
     "fullscreenToDoModal": "Tam ekranda yapılacakların ayrıntıları",
     "moveCompletedSubTaskToBottom": "Tamamlanan görevleri en alta taşı",
+    "autoCompleteTaskWhenAllSubtasksAreDone": "Görevleri otomatik olarak tamamlayın",
     "weekStartOnMonday": "Hafta Pazartesi ile başlar"
   },
   "donate": {
