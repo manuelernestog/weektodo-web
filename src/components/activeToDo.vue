@@ -1,33 +1,86 @@
 <template>
-  <div id="todo-item-active" class="todo-item" ref="currentTodo" draggable="true"
-    @dragstart="startDrag($event, activeTodo.toDo, activeTodo.index)" @dragend="endDrag()" @wheel="movingWheel"
-    :class="{ 'dragging': todoDragging }" @mouseleave="hideToDoItem">
+  <div
+    id="todo-item-active"
+    class="todo-item"
+    ref="currentTodo"
+    draggable="true"
+    @dragstart="startDrag($event, activeTodo.toDo, activeTodo.index)"
+    @dragend="endDrag()"
+    @wheel="movingWheel"
+    :class="{ dragging: todoDragging }"
+    @mouseleave="hideToDoItem"
+  >
     <div class="d-flex">
-      <span class="noselect item-text" :class="{ 'checked-todo': activeTodo.toDo.checked }" style="flex-grow: 1"
-        @click="checkTodoClickhandler" @click.middle="showToDoDetails">
-        <span v-if="activeTodo.toDo.color != 'none'" class="cicle-icon" :style="'color: ' + activeTodo.toDo.color" :class="{
-          'bi-check-circle-fill': activeTodo.toDo.checked,
-          'bi-circle-fill': !activeTodo.toDo.checked,
-        }"></span>
-        <span v-else class="cicle-icon"
-          :class="{ 'bi-check-circle': activeTodo.toDo.checked, 'bi-circle': !activeTodo.toDo.checked, }"></span>
+      <span
+        class="noselect item-text"
+        :class="{ 'checked-todo': activeTodo.toDo.checked }"
+        style="flex-grow: 1"
+        @click="checkTodoClickhandler"
+        @click.middle="showToDoDetails"
+      >
+        <span
+          v-if="activeTodo.toDo.color != 'none'"
+          class="cicle-icon"
+          :style="'color: ' + activeTodo.toDo.color"
+          :class="{
+            'bi-check-circle-fill': activeTodo.toDo.checked,
+            'bi-circle-fill': !activeTodo.toDo.checked,
+          }"
+        ></span>
+        <span
+          v-else
+          class="cicle-icon"
+          :class="{
+            'bi-check-circle': activeTodo.toDo.checked,
+            'bi-circle': !activeTodo.toDo.checked,
+          }"
+        ></span>
         <span v-html="todoText"></span>
-        <span class="time-details"> {{ timeFormat(activeTodo.toDo.time) }}
-          <div class="alarm-indicator"
-            :class="{ 'show-alarm-indicator': notificationIndicator && activeTodo.toDo.alarm }"></div>
+        <span class="time-details">
+          {{ timeFormat(activeTodo.toDo.time) }}
+          <div
+            class="alarm-indicator"
+            :class="{
+              'show-alarm-indicator':
+                notificationIndicator && activeTodo.toDo.alarm,
+            }"
+          ></div>
         </span>
       </span>
-      <i class="bi-three-dots todo-item-menu" type="button" @click="showToDoDetails"></i>
+      <i
+        class="bi-three-dots todo-item-menu"
+        type="button"
+        @click="showToDoDetails"
+      ></i>
       <i class="bi-x todo-item-remove" @click="removeTodo"></i>
     </div>
 
-    <div v-if="activeTodo.toDo.subTaskList && activeTodo.toDo.subTaskList.length > 0" class="todo-item-sub-tasks">
+    <div
+      v-if="
+        activeTodo.toDo.subTaskList && activeTodo.toDo.subTaskList.length > 0
+      "
+      class="todo-item-sub-tasks"
+    >
       <ul class="sub-tasks">
-        <li v-for="(subTask, index) in activeTodo.toDo.subTaskList" :key="index" class="sub-task">
-          <div class="d-flex flex-row mt-1" :class="{ 'checked-sub-task': subTask.checked }">
-            <input class="form-check-input" type="checkbox" v-model="subTask.checked"
-              @change="checkSubTask(subTask, index, $event)" />
-            <label class="form-check-label" @click="checkSubTask(subTask, index, $event)">
+        <li
+          v-for="(subTask, index) in activeTodo.toDo.subTaskList"
+          :key="index"
+          class="sub-task"
+        >
+          <div
+            class="d-flex flex-row mt-1"
+            :class="{ 'checked-sub-task': subTask.checked }"
+          >
+            <input
+              class="form-check-input"
+              type="checkbox"
+              v-model="subTask.checked"
+              @change="checkSubTask(subTask, index, $event)"
+            />
+            <label
+              class="form-check-label"
+              @click="checkSubTask(subTask, index, $event)"
+            >
               <span v-html="linkifyText(subTask.text)"></span>
             </label>
           </div>
@@ -42,31 +95,41 @@ import toDoListRepository from "../repositories/toDoListRepository";
 import { Modal, Toast } from "bootstrap";
 import moment from "moment";
 import notifications from "../helpers/notifications";
-import linkifyStr from 'linkify-string';
+import linkifyStr from "linkify-string";
 import ClickHandler from "@manuelernestog/click-handler";
 import tasksHelper from "../helpers/tasksHelper";
 
 export default {
   components: {},
   props: {
-    activeTodo: { required: true, type: Object }
+    activeTodo: { required: true, type: Object },
   },
   data() {
     return {
       editing: false,
       todoDragHover: false,
       todoDragging: false,
-      options: { target: '_blank', defaultProtocol: 'https' },
+      options: { target: "_blank", defaultProtocol: "https" },
       clickhandler: new ClickHandler(),
-      scrollingTimeOut: null
+      scrollingTimeOut: null,
     };
   },
   methods: {
     removeTodo: function () {
-      this.$store.commit("setUndoElement", { type: 'task', todo: this.activeTodo.toDo, index: this.activeTodo.index });
-      this.$store.commit("removeTodo", { toDoListId: this.activeTodo.toDoListId, index: this.activeTodo.index, });
+      this.$store.commit("setUndoElement", {
+        type: "task",
+        todo: this.activeTodo.toDo,
+        index: this.activeTodo.index,
+      });
+      this.$store.commit("removeTodo", {
+        toDoListId: this.activeTodo.toDoListId,
+        index: this.activeTodo.index,
+      });
       notifications.refreshDayNotifications(this, this.activeTodo.toDoListId);
-      toDoListRepository.update(this.activeTodo.toDoListId, this.$store.getters.todoLists[this.activeTodo.toDoListId]);
+      toDoListRepository.update(
+        this.activeTodo.toDoListId,
+        this.$store.getters.todoLists[this.activeTodo.toDoListId]
+      );
       let toast = new Toast(document.getElementById("taskRemoved"));
       toast.show(); // The undo remove acction it's called in todoModal.vue:undoRemoveTask
       this.hideToDoItem();
@@ -77,27 +140,62 @@ export default {
         index: this.activeTodo.index,
       });
 
-      let modal = new Modal(document.getElementById("toDoModal"), { keyboard: false });
+      let modal = new Modal(document.getElementById("toDoModal"), {
+        keyboard: false,
+      });
       modal.show();
     },
     checkTodoClickhandler: function (e) {
       if (e.target.href) return;
 
-      this.$store.commit("checkTodo", { toDoListId: this.activeTodo.toDoListId, index: this.activeTodo.index, });
+      this.$store.commit("checkTodo", {
+        toDoListId: this.activeTodo.toDoListId,
+        index: this.activeTodo.index,
+      });
       var id = this.activeTodo.toDoListId;
       var index = this.activeTodo.index;
-      this.clickhandler.handle(() => { this.checkToDo(id, index) }, this.activeTodo.edit, `${this.activeTodo.toDoListId}${this.activeTodo.index}`);
+      this.clickhandler.handle(
+        () => {
+          this.checkToDo(id, index);
+        },
+        this.activeTodo.edit,
+        `${this.activeTodo.toDoListId}${this.activeTodo.index}`
+      );
     },
     checkToDo: function (toDoListId, index) {
-      if (this.$store.getters.todoLists[toDoListId][index].checked && this.$store.getters.config.moveCompletedTaskToBottom) {
+      if (
+        this.$store.getters.todoLists[toDoListId][index].checked &&
+        this.$store.getters.config.moveCompletedTaskToBottom
+      ) {
         this.$refs.currentTodo.style.display = `none`;
-        this.$store.commit("moveTodoToEnd", { toDoListId: toDoListId, index: index, });
+        this.$store.commit("moveTodoToEnd", {
+          toDoListId: toDoListId,
+          index: index,
+        });
+
+        if (
+          this.autoCompleteTaskWhenAllSubtasksAreDone &&
+          this.$store.getters.todoLists[toDoListId][index].subTaskList.length >
+            0
+        ) {
+          this.$store.getters.todoLists[toDoListId][index].subTaskList.forEach(
+            (el) => (el.checked = true)
+          );
+        }
       }
       if (this.$store.getters.config.autoReorderTasks) {
         this.$refs.currentTodo.style.display = `none`;
-        toDoListRepository.update(toDoListId, tasksHelper.reorderTasksList(this.$store.getters.todoLists[toDoListId]));
+        toDoListRepository.update(
+          toDoListId,
+          tasksHelper.reorderTasksList(
+            this.$store.getters.todoLists[toDoListId]
+          )
+        );
       } else {
-        toDoListRepository.update(toDoListId, this.$store.getters.todoLists[toDoListId]);
+        toDoListRepository.update(
+          toDoListId,
+          this.$store.getters.todoLists[toDoListId]
+        );
       }
       notifications.refreshDayNotifications(this, this.activeTodo.toDoListId);
     },
@@ -115,7 +213,9 @@ export default {
     },
     endDrag: function () {
       this.todoDragging = false;
-      document.getElementById("app-container").classList.remove("dragging-item");
+      document
+        .getElementById("app-container")
+        .classList.remove("dragging-item");
     },
     onDragenter: function () {
       this.todoDragHover = true;
@@ -128,8 +228,27 @@ export default {
 
       if (!e.target.value) subTask.checked = !subTask.checked;
       var todoList = this.activeTodo.toDo.subTaskList;
-      if (subTask.checked && this.moveSubtaskToBotttom) { todoList.push(todoList.splice(index, 1)[0]); }
-      toDoListRepository.update(this.activeTodo.toDoListId, this.$store.getters.todoLists[this.activeTodo.toDoListId]);
+      if (subTask.checked && this.moveSubtaskToBotttom) {
+        todoList.push(todoList.splice(index, 1)[0]);
+      }
+
+      if (this.autoCompleteTaskWhenAllSubtasksAreDone) {
+        this.markParentTaskDone(
+          this.activeTodo.toDo.subTaskList[index].checked
+        );
+      }
+
+      toDoListRepository.update(
+        this.activeTodo.toDoListId,
+        this.$store.getters.todoLists[this.activeTodo.toDoListId]
+      );
+    },
+    markParentTaskDone: function (check) {
+      var result = this.activeTodo.toDo.subTaskList.every((el) => el.checked);
+      //debugger;
+      this.$store.getters.todoLists[this.activeTodo.toDoListId][
+        this.activeTodo.index
+      ].checked = result && check;
     },
     timeFormat: function (date) {
       if (date) {
@@ -152,11 +271,15 @@ export default {
         this.scrollingTimeOut = null;
         document.onmousemove = function () {
           document.onmousemove = null;
-          document.getElementById("todo-item-active").classList.remove("scrolling");
-          document.getElementById("app-container").classList.remove("scrolling");
-        }
+          document
+            .getElementById("todo-item-active")
+            .classList.remove("scrolling");
+          document
+            .getElementById("app-container")
+            .classList.remove("scrolling");
+        };
       }, 400);
-    }
+    },
   },
   computed: {
     todoText: function () {
@@ -168,7 +291,10 @@ export default {
     moveSubtaskToBotttom: function () {
       return this.$store.getters.config.moveCompletedSubTaskToBottom;
     },
-  }
+    autoCompleteTaskWhenAllSubtasksAreDone: function () {
+      return this.$store.getters.config.autoCompleteTaskWhenAllSubtasksAreDone;
+    },
+  },
 };
 </script>
 

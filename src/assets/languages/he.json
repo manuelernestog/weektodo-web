@@ -43,6 +43,7 @@
     "moveCompletedTaskToBottom": "הזז משימות שהושלמו לתחתית",
     "moveCompletedSubTaskToBottom": "הזז תתי משימות שהושלמו לתחתית",
     "fullscreenToDoModal": "פרטי משימה במסך מלא",
+    "autoCompleteTaskWhenAllSubtasksAreDone": "השלם משימות באופן אוטומטי",
     "weekStartOnMonday": "השבוע מתחיל ביום שני"
   },
   "donate": {

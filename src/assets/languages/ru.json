@@ -43,6 +43,7 @@
     "clear": "Очистить",
     "fullscreenToDoModal": "Детали на весь экран",
     "moveCompletedSubTaskToBottom": "Переместить завершенные подзадачи в конец",
+    "autoCompleteTaskWhenAllSubtasksAreDone": "Выполняйте задачи автоматически",
     "weekStartOnMonday": "Начало недели в понедельник"
   },
   "donate": {

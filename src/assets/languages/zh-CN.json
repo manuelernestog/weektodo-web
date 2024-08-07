@@ -43,6 +43,7 @@
     "weekStartOnMonday": "从星期一开始",
     "clear": "清除",
     "fullscreenToDoModal": "全屏显示“待办事项详情”",
+    "autoCompleteTaskWhenAllSubtasksAreDone": "自动完成任务",
     "moveCompletedSubTaskToBottom": "将已完成的子任务移到底部"
   },
   "donate": {

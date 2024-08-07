@@ -43,6 +43,7 @@
     "clear": "Excluir",
     "fullscreenToDoModal": "Detalhes da tarefa em tela cheia",
     "moveCompletedSubTaskToBottom": "Mover subtarefas concluídas para baixo",
+    "autoCompleteTaskWhenAllSubtasksAreDone": "Completar tarefas automaticamente",
     "weekStartOnMonday": "A semana começa na segunda-feira"
   },
   "donate": {

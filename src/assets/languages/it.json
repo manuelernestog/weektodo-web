@@ -43,6 +43,7 @@
     "clear": "Eliminare",
     "fullscreenToDoModal": "Dettagli attività a schermo intero",
     "moveCompletedSubTaskToBottom": "Sposta le attività secondarie completate in basso",
+    "autoCompleteTaskWhenAllSubtasksAreDone": "Completa le attività automaticamente",
     "weekStartOnMonday": "La settimana inizia lunedì"
   },
   "donate": {

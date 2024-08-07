@@ -43,6 +43,7 @@
     "moveCompletedTaskToBottom": "Di chuyển công việc đã hoàn thành xuống dưới cùng",
     "moveCompletedSubTaskToBottom": "Di chuyển công việc con đã hoàn thành xuống dưới cùng",
     "fullscreenToDoModal": "Chi tiết Công việc ở chế độ toàn màn hình",
+    "autoCompleteTaskWhenAllSubtasksAreDone": "Hoàn thành nhiệm vụ tự động",
     "weekStartOnMonday": "Tuần bắt đầu vào Thứ Hai"
   },
   "donate": {

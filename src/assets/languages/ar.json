@@ -43,6 +43,7 @@
     "moveCompletedTaskToBottom": "نقل المهام المكتملة إلى الأسفل",
     "moveCompletedSubTaskToBottom": "نقل المهام الفرعية المكتملة إلى الأسفل",
     "fullscreenToDoModal": "تفاصيل المهمة بشاشة كاملة",
+    "autoCompleteTaskWhenAllSubtasksAreDone": "إكمال المهام تلقائيًا",
     "weekStartOnMonday": "بداية الأسبوع يوم الاثنين"
   },
   "donate": {

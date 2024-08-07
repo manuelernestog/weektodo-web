@@ -43,6 +43,7 @@
     "clear": "Supprimer",
     "fullscreenToDoModal": "Détails de la tâche en plein écran",
     "moveCompletedSubTaskToBottom": "Déplacer les sous-tâches terminées vers le bas",
+    "autoCompleteTaskWhenAllSubtasksAreDone": "Effectuer des tâches automatiquement",
     "weekStartOnMonday": "La semaine commence le lundi"
   },
   "donate": {

@@ -43,6 +43,7 @@
     "clear": "刪除",
     "fullscreenToDoModal": "全屏待辦事項詳細信息",
     "moveCompletedSubTaskToBottom": "將完成的子任務移至底部",
+    "autoCompleteTaskWhenAllSubtasksAreDone": "自動完成任務",
     "weekStartOnMonday": "一周從星期一開始"
   },
   "donate": {

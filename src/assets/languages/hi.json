@@ -43,6 +43,7 @@
     "moveCompletedTaskToBottom": "पूरे हुए कार्यों को नीचे ले जाएं",
     "moveCompletedSubTaskToBottom": "पूरी हुई उप-कार्यों को नीचे ले जाएं",
     "fullscreenToDoModal": "फुल स्क्रीन में करने के लिए कार्यों का विवरण",
+    "autoCompleteTaskWhenAllSubtasksAreDone": "कार्य स्वचालित रूप से पूर्ण करें",
     "weekStartOnMonday": "सप्ताह सोमवार से शुरू होता है"
   },
   "donate": {

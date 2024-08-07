@@ -43,6 +43,7 @@
     "moveCompletedTaskToBottom": "Move completed tasks to bottom",
     "moveCompletedSubTaskToBottom": "Move completed sub-tasks to bottom",
     "fullscreenToDoModal": "To-do Details in full screen",
+    "autoCompleteTaskWhenAllSubtasksAreDone": "Complete tasks automatically",
     "weekStartOnMonday": "The Week start on Monday"
   },
   "donate": {

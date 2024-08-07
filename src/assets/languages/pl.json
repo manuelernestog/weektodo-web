@@ -107,6 +107,7 @@
     "clear": "Usuwać",
     "fullscreenToDoModal": "Szczegóły zadań na pełnym ekranie",
     "moveCompletedSubTaskToBottom": "Przenieś ukończone zadania podrzędne na dół",
+    "autoCompleteTaskWhenAllSubtasksAreDone": "Automatyczne wykonywanie zadań",
     "weekStartOnMonday": "Tydzień zaczyna się w poniedziałek"
   },
   "tips": {
