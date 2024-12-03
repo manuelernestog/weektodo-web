@@ -29,14 +29,14 @@
             <thead>
               <tr>
                 <th  class="recurrent-heading" scope="col">{{ $t("ui.task") }}</th>
-                <th  class="recurrent-heading" scope="col">{{ $t("ui.Frecuency") }}</th>
+                <th  class="recurrent-heading" scope="col">{{ $t("ui.frequency") }}</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="task in recurringTasks" :key="task.id">
                 <td class="reccurent-items">{{ task.data.text }}</td>
-                <td class="recurring-freq">{{ frecuency(task) }}</td>
+                <td class="recurring-freq">{{ frequency(task) }}</td>
                 <td>
                   <i
                     class="bi-trash mx-2"
@@ -84,7 +84,7 @@ export default {
     };
   },
   methods: {
-    frecuency: function (task) {
+    frequency: function (task) {
       switch (task.type) {
         case "0":
           return this.$t("todoDetails.yearly") + " / " + moment(task.start_date).locale(this.language).format("MMM Do");
@@ -189,7 +189,7 @@ export default {
   .dark-theme & {
        color:rgb(222, 222, 222);
   }
- 
+
 }
 
 .reccurent-items , .recurring-freq{

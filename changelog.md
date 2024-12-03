@@ -52,7 +52,7 @@ Nov 24, 2022
 - Improving contrast for old items/ checked tasks
 - Raplacing name WeekToDo for WeekToDo
 - improving dark theme switchers btn
-- Adding details to recurrent events frecuency
+- Adding details to recurrent events frequency
 
 ## v1.9.0
 Jul 28, 2022
