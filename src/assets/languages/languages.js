@@ -16,6 +16,7 @@ import ko from './ko.json'
 import hi from './hi.json'
 import he from './he.json'
 import vi from './vi.json'
+import ca from './ca.json'
 
 export const defaultLocale = 'en'
 
@@ -37,5 +38,6 @@ export const languages = {
     ko: ko,
     hi: hi,
     he: he,
-    vi: vi
+    vi: vi,
+    ca: ca,
 }
