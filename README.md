@@ -106,8 +106,7 @@ yarn run electron:serve // to run native version
 ```
 
 ### Docker
-
- To run the development web version use `docker-compose up`
+get into the `docker` folder, if you want run the development web version copy the file with prefix "devlop." and delete the prefix and run the command: `docker-compose up`, production version also.
 
 ## Contributing
 

@@ -1,0 +1,19 @@
+services:
+  app:
+    build: .
+    container_name: weektodo
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - ".:/app"
+      - "node_modules:/app/node_modules"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  node_modules:
