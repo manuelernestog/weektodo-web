@@ -2,7 +2,7 @@
   <div class="side-bar">
     <img
       class="logo"
-      src="/img/logo-color.svg"
+      src="img/logo-color.svg"
       width="42"
       height="42"
       alt="WeekTodo Logo"
@@ -12,7 +12,7 @@
     />
     <img
       class="logo logo-white"
-      src="/img/logo-white.svg"
+      src="img/logo-white.svg"
       width="42"
       height="42"
       alt="WeekTodo Logo"

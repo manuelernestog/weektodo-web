@@ -10,14 +10,14 @@
           <div class="d-flex flex-column" style="text-align: center; margin-top: 10px">
             <img
               class="logo align-self-center"
-              src="/img/weektodo-isologo-color.svg"
+              src="imgweektodo-isologo-color.svg"
               alt="WeekToDo"
               title="WeekToDo Logo"
               width="256"
             />
             <img
               class="logo logo-white align-self-center"
-              src="/img/weektodo-isologo-white.svg"
+              src="imgweektodo-isologo-white.svg"
               alt="WeekToDo"
               title="WeekToDo Logo"
               width="256"
