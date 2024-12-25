@@ -108,7 +108,14 @@ yarn run electron:serve // to run native version
 ### Docker
 get into the `docker` folder, if you want run the development web version copy the file with prefix "devlop." and delete the prefix then run the command: `docker-compose up`, production version also.
 use command `docker build -t weektodo:latest -f docker/Dockerfile .` to build the image.
-
+### Reverse Proxy
+use Caddy to reverse proxy the app, you can use edit Caddyfile. for example: 
+```
+:80/weektodo/* {
+    uri strip_prefix /weektodo
+    reverse_proxy http://weektodo:80
+}
+```
 ## Contributing
 
 You can support this project in several ways:
