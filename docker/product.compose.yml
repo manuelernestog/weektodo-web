@@ -1,0 +1,15 @@
+services:
+  weektodo:
+    build: 
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: weektodo
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://127.0.0.1:80"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
